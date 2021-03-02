@@ -18,13 +18,12 @@
         });
 
         socket.on('message', function(msg){
-            $("#messages").append('<li>'+msg+'</li>');
+            $("#textbox").val(msg);
             console.log('Recieved Message');
         });
 
-        $('#sendButton').on('click', function() {
-            socket.send($('#myMessage').val());
-            $('#myMessage').val('');
+        $('#textbox').on('change', function() {
+            socket.send($('#textbox').val());
         });
     });
     </script>
@@ -32,5 +31,8 @@
     <ul id="messages"></ul>
     <input type="text" id="myMessage">
     <button id="sendButton">Send</button>
+    <textarea id="textbox" rows="4" cols="50">
+This is where you can type.
+    </textarea>
 </body>
 </html>
