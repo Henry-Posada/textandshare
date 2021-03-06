@@ -22,7 +22,7 @@
             console.log('Recieved Message');
         });
 
-        $('#textbox').on('change', function() {
+        $('#textbox').on('keyup', function() {
             socket.send($('#textbox').val());
         });
     });
