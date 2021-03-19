@@ -13,8 +13,11 @@
     $(document).ready(function(){
         var socket = io.connect('http://127.0.0.1:5000')
 
-        socket.on('connect', function() {
-            socket.send('User Has Connected');
+        var usersConnected = document.getElementById("usersConnected");
+
+        socket.on('users', function(users) {
+            userCount = document.getElementById("usersConnected");
+            userCount.innerHTML = users.user_count;
         });
 
         socket.on('message', function(msg){
@@ -27,12 +30,11 @@
         });
     });
     </script>
-    Hello World!
-    <ul id="messages"></ul>
-    <input type="text" id="myMessage">
-    <button id="sendButton">Send</button>
-    <textarea id="textbox" rows="4" cols="50">
+    <div>
+       <h1>Users Connected: <var id ="usersConnected"> </var> </h1>
+    <textarea id="textbox" rows="4" cols="50"> 
 This is where you can type.
-    </textarea>
+    </textarea> <!-- Might need to change this to div contenteditable=true, that way the elements can be bolded, etc. -->
+    </div>
 </body>
 </html>
