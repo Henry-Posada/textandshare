@@ -94,9 +94,9 @@ img.intLink { border: 0; }
         socket.on('users', function(users) {
             userCount = document.getElementById("usersConnected");
             userCount.innerHTML = users.user_count;
-            $('#textBox').val(users.message);
+            /* $('#textBox').val(users.message); */
         });
-
+        /*
         socket.on('message', function(msg){
             $("#textBox").val(msg);
             console.log('Recieved Message');
@@ -105,6 +105,12 @@ img.intLink { border: 0; }
         $('#textBox').on('keyup', function() {
             socket.send($('#textBox').val());
         });
+        
+        
+        $('#boldButton').on('click', function(){
+          socket.send($('#textBox').val());
+        });
+        */
     });
     </script>
 
@@ -112,22 +118,18 @@ img.intLink { border: 0; }
 
 
 <body onload="initDoc();">
-<form name="compForm" method="post" action="sample.php" onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
-<input type="hidden" name="myDoc">
+  <form name="compForm" method="post" action="sample.php" onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
+  <input type="hidden" name="myDoc">
 
 
 
-<div id="toolBar2">
-<img class="intLink" title="Bold" onclick="formatDoc('bold');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=" />
-<img class="intLink" title="Italic" onclick="formatDoc('italic');" src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==" />
-<img class="intLink" title="Underline" onclick="formatDoc('underline');" src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7" />
-</div>
+  <div id="toolBar2">
+    <img id="boldButton" class="intLink" title="Bold" onclick="formatDoc('bold');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=" />
+    <img id="italicButton" class="intLink" title="Italic" onclick="formatDoc('italic');" src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==" />
+    <img id="underlineButton" class="intLink" title="Underline" onclick="formatDoc('underline');" src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7" />
+  </div>
 
-
-
-
-<div contenteditable="true" id="textBox"></div>
-<p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
+  <div contenteditable="true" id="textBox"></div>
+  <p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
 </body>
-</html>
 </html>
