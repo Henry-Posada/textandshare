@@ -5,61 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type ="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-
-function initDoc() {
-  oDoc = document.getElementById("textBox");
-  sDefTxt = oDoc.innerHTML;
-  if (document.compForm.switchMode.checked) { setDocMode(true); }
-}
-
-function formatDoc(sCmd, sValue) {
-  if (validateMode()) { document.execCommand(sCmd, false, sValue); oDoc.focus(); }
-}
-
-function validateMode() {
-  if (!document.compForm.switchMode.checked) { return true ; }
-  alert("Uncheck \"Show HTML\".");
-  oDoc.focus();
-  return false;
-}
-
-function setDocMode(bToSource) {
-  var oContent;
-  if (bToSource) {
-    oContent = document.createTextNode(oDoc.innerHTML);
-    oDoc.innerHTML = "";
-    var oPre = document.createElement("pre");
-    oDoc.contentEditable = false;
-    oPre.id = "sourceText";
-    oPre.contentEditable = true;
-    oPre.appendChild(oContent);
-    oDoc.appendChild(oPre);
-    document.execCommand("defaultParagraphSeparator", false, "div");
-  } else {
-    if (document.all) {
-      oDoc.innerHTML = oDoc.innerText;
-    } else {
-      oContent = document.createRange();
-      oContent.selectNodeContents(oDoc.firstChild);
-      oDoc.innerHTML = oContent.toString();
-    }
-    oDoc.contentEditable = true;
-  }
-  oDoc.focus();
-}
-
-function printDoc() {
-  if (!validateMode()) { return; }
-  var oPrntWin = window.open("","_blank","width=450,height=470,left=400,top=100,menubar=yes,toolbar=no,location=no,scrollbars=yes");
-  oPrntWin.document.open();
-  oPrntWin.document.write("<!doctype html><html><head><title>Print<\/title><\/head><body onload=\"print();\">" + oDoc.innerHTML + "<\/body><\/html>");
-  oPrntWin.document.close();
-}
-
-</script>
 
 
 <style type="text/css">
@@ -85,39 +31,12 @@ img.intLink { border: 0; }
 
 
 </head>
- <script type="text/javascript">
-    $(document).ready(function(){
-        var socket = io.connect('http://127.0.0.1:5000')
 
-        var usersConnected = document.getElementById("usersConnected");
 
-        socket.on('users', function(users) {
-            userCount = document.getElementById("usersConnected");
-            userCount.innerHTML = users.user_count;
-            /* $('#textBox').val(users.message); */
-        });
-        /*
-        socket.on('message', function(msg){
-            $("#textBox").val(msg);
-            console.log('Recieved Message');
-        });
-
-        $('#textBox').on('keyup', function() {
-            socket.send($('#textBox').val());
-        });
-        
-        
-        $('#boldButton').on('click', function(){
-          socket.send($('#textBox').val());
-        });
-        */
-    });
-    </script>
-
-<h1>Users Connected: <var id ="usersConnected"> </var> </h1>
 
 
 <body onload="initDoc();">
+  <h1>Users Connected: <var id ="usersConnected"> </var> </h1>
   <form name="compForm" method="post" action="sample.php" onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
   <input type="hidden" name="myDoc">
 
@@ -131,5 +50,107 @@ img.intLink { border: 0; }
 
   <div contenteditable="true" id="textBox"></div>
   <p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+        var socket = io.connect('http://127.0.0.1:5000')
+
+        var usersConnected = document.getElementById("usersConnected");
+        var textBoxID =  document.getElementById("textBox");
+
+        socket.on('users', function(users) {
+            userCount = document.getElementById("usersConnected");
+            userCount.innerText = users.user_count;
+            console.log('Connected');
+            /*$('#textBox').val(users.message);*/
+        });
+        
+        socket.on('message', function(msg){
+            textBoxID.innerHTML = msg;
+            console.log(msg);
+        });
+
+        $('#textBox').on('keyup', function() {
+            socket.send($('#textBox').html());
+            console.log('sending...');
+        });
+        
+        
+        $('#boldButton').on('click', function(){
+          socket.send($('#textBox').html());
+        });
+
+        $('#italicButton').on('click', function(){
+          socket.send($('#textBox').html());
+        });
+
+        $('#underlineButton').on('click', function(){
+          socket.send($('#textBox').html());
+        });
+        
+        
+    });
+    </script>
+    
 </body>
+
+<script type="text/javascript">
+
+  function initDoc() {
+    oDoc = document.getElementById("textBox");
+    sDefTxt = oDoc.innerHTML;
+    if (document.compForm.switchMode.checked) { setDocMode(true); }
+  }
+  
+  function formatDoc(sCmd, sValue) {
+    if (validateMode()) { document.execCommand(sCmd, false, sValue); oDoc.focus(); }
+  }
+  
+  function validateMode() {
+    if (!document.compForm.switchMode.checked) { return true ; }
+    alert("Uncheck \"Show HTML\".");
+    oDoc.focus();
+    return false;
+  }
+  
+  function setDocMode(bToSource) {
+    var oContent;
+    if (bToSource) {
+      oContent = document.createTextNode(oDoc.innerHTML);
+      oDoc.innerHTML = "";
+      var oPre = document.createElement("pre");
+      oDoc.contentEditable = false;
+      oPre.id = "sourceText";
+      oPre.contentEditable = true;
+      oPre.appendChild(oContent);
+      oDoc.appendChild(oPre);
+      document.execCommand("defaultParagraphSeparator", false, "div");
+    } else {
+      if (document.all) {
+        oDoc.innerHTML = oDoc.innerText;
+      } else {
+        oContent = document.createRange();
+        oContent.selectNodeContents(oDoc.firstChild);
+        oDoc.innerHTML = oContent.toString();
+      }
+      oDoc.contentEditable = true;
+    }
+    oDoc.focus();
+  }
+  
+  function printDoc() {
+    if (!validateMode()) { return; }
+    var oPrntWin = window.open("","_blank","width=450,height=470,left=400,top=100,menubar=yes,toolbar=no,location=no,scrollbars=yes");
+    oPrntWin.document.open();
+    oPrntWin.document.write("<!doctype html><html><head><title>Print<\/title><\/head><body onload=\"print();\">" + oDoc.innerHTML + "<\/body><\/html>");
+    oPrntWin.document.close();
+  }
+  
+  </script>
+  <script type ="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
+  
+  
+
+
 </html>

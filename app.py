@@ -22,7 +22,7 @@ def disconnect():
 
 @socketio.on('message')
 def handleMessage(msg):
-    print('Message: ' + msg)
+    #print('Message: ' + str(msg))
     global message
     message = msg
     send(msg, broadcast=True) #broadcasting received message to all connect clients, including the one that sent it.
