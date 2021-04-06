@@ -3,6 +3,10 @@ from flask_socketio import SocketIO, send, emit
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
+@app.route("/")
+def index():
+    return render_template('index.html')
+
 socketio = SocketIO(app, cors_allowed_origins="*")
 clients = 0
 message = ""
