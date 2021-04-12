@@ -3,9 +3,16 @@ from flask import Flask,render_template,request,redirect,url_for
 from flaskext.mysql import MySQL
 import MYSQLdb
 
+# mysql = MySQL()
 # Container for app
 app = Flask(_name_)
 
+# Possible other way to connect
+# app.config['MYSQL_DATABASE_USER'] = 'root'
+# app.config['MYSQL_DATABASE_PASSWORD'] = 'root_password'
+# app.config['MYSQL_DATABASE_DB'] = 'textAndShareDB'
+# app.config['MYSQL_DATABASE_HOST'] = '69.121.70.211:3306'
+ 
 # Connection to MySQL database
 conn = MySQLdb.connect(host="69.121.70.211:3306",user="root",password="root_password",db="textAndShareDB") 
 
@@ -21,6 +28,7 @@ def signUp():
 	password = str(request.form["password"])
 	email = str(request.form["email"])
 	
+	# cursor = mysql.connect().cursor()
 	cursor = conn.cursor()
 	
 	cursor.execute("INSERT INTO users (name,password,email)VALUES(%s,%s,%s)",(username,password,email))
