@@ -9,6 +9,9 @@
     <script type="text/javascript" src="/static/session.js"></script>
     <script type="text/javascript" src="/static/editing.js"></script>
     <script type ="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
+
+
+
     <link rel="stylesheet" href="/static/session.css"></style>
 </head>
 
@@ -25,11 +28,10 @@
     <img id="underlineButton" class="intLink" title="Underline" onclick="formatDoc('underline');" src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7" />
   </div>
 
-  <div contenteditable="true" id="textBox"></div>
+  <div contenteditable="true" id="textBox">Hello</div>
+  <div id="caretposition">0</div>
   <p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
 
 </body>
-  
-
 
 </html>
