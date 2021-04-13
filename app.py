@@ -8,9 +8,13 @@ def index():
     return render_template('index.html')
 
 
-@app.route("/session")
+@app.route("/session", methods=['POST'])
 def session():
     return render_template('session.html')
+
+@app.route("/home", methods=['POST'])
+def home():
+	return render_template("index.html")
 
 socketio = SocketIO(app, cors_allowed_origins="*")
 clients = 0

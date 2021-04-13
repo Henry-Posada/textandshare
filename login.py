@@ -59,7 +59,7 @@ def check():
 		return redirect(url_for("index"))
 
 # Takes you to main editor 
-@app.route("/index")
+@app.route("/home")
 def index():
 	return render_template("index.html")
 
