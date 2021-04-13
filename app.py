@@ -7,6 +7,11 @@ app.config['SECRET_KEY'] = 'secret!'
 def index():
     return render_template('index.html')
 
+
+@app.route("/session")
+def session():
+    return render_template('session.html')
+
 socketio = SocketIO(app, cors_allowed_origins="*")
 clients = 0
 message = ""
