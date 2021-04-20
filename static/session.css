@@ -2,12 +2,13 @@ img.intLink { border: 0; }
 #toolBar1 select { font-size:10px; }
 #textBox{
   width: 100%;
-  height: 100%;
-  border: 1px #000000 solid;
+  height: 90%;
+  border: 1px #606060 solid;
   padding: 12px;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: white;
+  outline: none;
 }
 #textBox #sourceText{
   padding: 0;
@@ -46,10 +47,18 @@ body {
 }
 
 form[name="compForm"]{
-  width: 100%;
+  width: 60%;
   height:100%;
-  padding-left: 25%;
-  padding-right: 25%;
+  padding-left: 8%;
+  padding-right: 8%;
+  background-color: rgb(120, 120, 120);
+  margin: auto;
+}
+
+h1[name="mainheader"]{
+  margin:auto;
+  font-family: 'Times New Roman', Times, serif;
+  width: 60%;
 }
 
 .center {
@@ -58,6 +67,8 @@ form[name="compForm"]{
   margin-right: auto;
   width: 30%;
 }
+
+
 
 #backButton { 
   width: 100%; 

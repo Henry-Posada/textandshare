@@ -89,4 +89,4 @@ var carPos;
     carPos = carPosArray[0];
     console.log(carPos);
   };
-  $('#textBox').on("mouseup keyup", update);
+  $('#textBox').on("mouseup mousedown keydown keyup", update);
