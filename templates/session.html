@@ -13,10 +13,11 @@
     <script type ="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
 </head>
 
-<div class="center">
+
 
 <body onload="initDoc();">
   <h1>Users Connected: <var id ="usersConnected"> </var> </h1>
+  <p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
   <form name="compForm" method="post" action="sample.php" onsubmit="if(validateMode()){this.myDoc.value=oDoc.innerHTML;return true;}return false;">
   <input type="hidden" name="myDoc">
   
@@ -24,16 +25,17 @@
     <img id="boldButton" class="intLink" title="Bold" onclick="formatDoc('bold');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=" />
     <img id="italicButton" class="intLink" title="Italic" onclick="formatDoc('italic');" src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==" />
     <img id="underlineButton" class="intLink" title="Underline" onclick="formatDoc('underline');" src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7" />
+    <i class="fas fa-file-code" onchange="setDocMode(this.checked)"></i>
   </div>
 
   <div contenteditable="true" id="textBox">Hello</div>
   <div id="caretposition">0</div>
-  <p id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></p>
-  <script type="text/javascript" src="/static/caretposinitioning.js"></script>
+  
+  <form action = "home" method="POST">
+    <input id="backButton" type="submit" value="Back To Login">
+  </form>  
 </form>
+
 </body>
-<form action = "home" method="POST">
-  <input id="backButton" type="submit" value="Back To Login">
-</form>
-</div>
+
 </html>

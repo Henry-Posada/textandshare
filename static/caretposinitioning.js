@@ -47,9 +47,9 @@ function node_walk(node, func) {
     return [cum_length[1], cum_length[0]];
   }
   //not yet working
-  function setCaretPosition(elemId, caretPos) {
-      var elem = document.getElementById(elemId);
-  
+  function setCaretPosition(caretPos) {
+      var elem = document.getElementById('textBox');
+      console.log("Here");
       if(elem != null) {
           if(elem.createTextRange) {
               var range = elem.createTextRange();
@@ -66,8 +66,27 @@ function node_walk(node, func) {
           }
       }
   }
+
+  function setCaret(carPos) {
+    var el = document.getElementById("textBox");
+    var range = document.createRange();
+    var sel = window.getSelection();
+    
+    range.setStart(el.childNodes[0], carPos);
+    console.log("Here");
+    range.collapse(true);
+    
+    sel.removeAllRanges();
+    sel.addRange(range);
+}
   
+var carPosArray;
+var carPos;
+
   var update = function() {
-  $('#caretposition').html(getCaretPosition(this));
+    $('#caretposition').html(getCaretPosition(this));
+    carPosArray = getCaretPosition(this);
+    carPos = carPosArray[0];
+    console.log(carPos);
   };
-  $('#textBox').on("mousedown mouseup keydown keyup", update);
+  $('#textBox').on("mouseup keyup", update);
