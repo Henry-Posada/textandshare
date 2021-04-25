@@ -1,8 +1,9 @@
-<!--Homepage for Text & Share -->
+<!-- Bootstrap Version of Login -->
 {% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}
-Text & Share
+Login
 {% endblock %}
 
 {% block styles %}
@@ -11,6 +12,7 @@ Text & Share
 {% endblock %}
 
 {% block content %}
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,6 +30,7 @@ Text & Share
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -35,16 +38,40 @@ Text & Share
 </nav>
 
 <div class="container">
+    <div class="login">
+        <form method="POST" action="/login">
+            <h2>Please sign in</h2>
 
-    <center>
-        <div class="login">
-            <br>
-            <br>
-            <p style="color:#fff;">
-                <font size="+5">Welcome to Text & Share</font>
-            </p>
-    </center>
+            {{ form.hidden_tag() }}
+            {{ wtf.form_field(form.username) }}
+            {{ wtf.form_field(form.password) }}
+            {{ wtf.form_field(form.remember) }}
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
 </div>
-
-</div><!-- /.container -->
 {% endblock %}
+
+<!-- Original Version -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Text & Share Login</title>
+        <link rel="stylesheet" href="/static/login.css"></style>
+    </head>
+    <body>
+        <div class="login">
+        <h1>Welcome back to <br> Text & Share</h1>
+        <h3>Sign into an existing account</h3>
+        <form action = "session" method="POST">
+            <input type="text" name="user" placeholder="username">
+            <br>
+            <input type="text" name="password" placeholder="password">
+            <br>
+            <input type="submit">
+        </form>
+    </body>
+</div>
+</html> -->
