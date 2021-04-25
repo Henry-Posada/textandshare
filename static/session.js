@@ -97,12 +97,12 @@ var update = function() {
 };
 $('#textBox').on("mouseup keyup", update);
 
-    socket.on('users', function(users) {
+    /**socket.on('users', function(users) {
         userCount = document.getElementById("usersConnected");
         userCount.innerText = users.user_count;
         console.log('Connected');
-        /*$('#textBox').val(users.message);*/
-    });
+        /*$('#textBox').val(users.message);
+    });*/
     
     socket.on('message', function(msg){
         textBoxID.innerHTML = msg;
