@@ -9,7 +9,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="/static/session.js"></script>
     <script type="text/javascript" src="/static/editing.js"></script>
-    
     <script type ="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.2/socket.io.js"></script>
     <script src="https://kit.fontawesome.com/f97d78160d.js" crossorigin="anonymous"></script>
 </head>
@@ -22,13 +21,17 @@
   <input type="hidden" name="myDoc">
   
   <div id="toolBar2">
-    <img id="boldButton" class="intLink" title="Bold" onclick="formatDoc('bold');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAInhI+pa+H9mJy0LhdgtrxzDG5WGFVk6aXqyk6Y9kXvKKNuLbb6zgMFADs=" />
-    <img id="italicButton" class="intLink" title="Italic" onclick="formatDoc('italic');" src="data:image/gif;base64,R0lGODlhFgAWAKEDAAAAAF9vj5WIbf///yH5BAEAAAMALAAAAAAWABYAAAIjnI+py+0Po5x0gXvruEKHrF2BB1YiCWgbMFIYpsbyTNd2UwAAOw==" />
-    <img id="underlineButton" class="intLink" title="Underline" onclick="formatDoc('underline');" src="data:image/gif;base64,R0lGODlhFgAWAKECAAAAAF9vj////////yH5BAEAAAIALAAAAAAWABYAAAIrlI+py+0Po5zUgAsEzvEeL4Ea15EiJJ5PSqJmuwKBEKgxVuXWtun+DwxCCgA7" />
-    <img class="intLink" title="Left align" onclick="formatDoc('justifyleft');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIghI+py+0Po5y02ouz3jL4D4JMGELkGYxo+qzl4nKyXAAAOw==" />
-    <img class="intLink" title="Center align" onclick="formatDoc('justifycenter');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIfhI+py+0Po5y02ouz3jL4D4JOGI7kaZ5Bqn4sycVbAQA7" />
-    <img class="intLink" title="Right align" onclick="formatDoc('justifyright');" src="data:image/gif;base64,R0lGODlhFgAWAID/AMDAwAAAACH5BAEAAAAALAAAAAAWABYAQAIghI+py+0Po5y02ouz3jL4D4JQGDLkGYxouqzl43JyVgAAOw==" />
-    <div id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox">Show HTML</label></div>
+    <table id=toolBarTable>
+    <tr>
+    <td><img id="boldButton" class="intLink fas fa-bold" onclick="formatDoc('bold');" src=""/></td>
+    <td><img id="italicButton" class="intLink fas fa-italic" onclick="formatDoc('italic');" src=""/></td>
+    <td><img id="underlineButton" class="intLink fas fa-underline" onclick="formatDoc('underline');" src=""/></td>
+    <td><img class="intLink fas fa-align-left" onclick="formatDoc('justifyleft');" src=""/></td>
+    <td><img class="intLink fas fa-align-center" onclick="formatDoc('justifycenter');" src=""/></td>
+    <td><img class="intLink fas fa-align-right" onclick="formatDoc('justifyright');" src=""/></td>
+    <td><div id="editMode"><input type="checkbox" name="switchMode" id="switchBox" onchange="setDocMode(this.checked);" /> <label for="switchBox"></label></div></td>
+    </tr>
+    </table>
   </div>
 
   <div contenteditable="true" id="textBox">The quick brown fox jumps over the lazy dog</div>
