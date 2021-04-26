@@ -85,7 +85,7 @@ def signup():
 
 # Session page route
 @app.route('/session')
-#@login_required
+@login_required
 def session():
     return render_template('session.html', name=current_user.username)
 
