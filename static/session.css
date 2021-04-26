@@ -9,6 +9,7 @@ img.intLink { border: 0; }
   overflow-y: scroll;
   background-color: white;
   outline: none;
+  font-family: 'Franklin Gothic Medium';
 }
 
 
@@ -23,20 +24,19 @@ img.intLink { border: 0; }
   margin: auto;
   align-content: center;
   justify-content: space-between;
-  width: 50%;
+  width: 75%;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 #toolBarTable{
   border: solid 1px black;
-  table-layout: fixed;
   width: 100%;
 }
 
 td{
   border: 1px solid black;
-  width: 15%;
+  width: auto;
   height: 20%;
   text-align: center;
 }
@@ -97,6 +97,7 @@ h1[name="mainheader"]{
   margin-right: auto;
   width: 30%;
 }
+
 
 
 

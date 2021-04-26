@@ -128,4 +128,8 @@ $('#textBox').on("mouseup keyup", update);
       socket.send($('#textBox').html());
     });
 
+    $('#fnts').on('change', function(){
+      document.getElementById("textBox").style.fontFamily = $("#fnts").val();
+    });
+
 });
