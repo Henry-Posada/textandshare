@@ -128,6 +128,18 @@ $('#textBox').on("mouseup keyup", update);
       socket.send($('#textBox').html());
     });
 
+    $('#justifyLeft').on('click', function(){
+      socket.send($('#textBox').html());
+    });
+
+    $('#justifyCenter').on('click', function(){
+      socket.send($('#textBox').html());
+    });
+
+    $('#justifyRight').on('click', function(){
+      socket.send($('#textBox').html());
+    });
+
     $('#fnts').on('change', function(){
       document.getElementById("textBox").style.fontFamily = $("#fnts").val();
     });
