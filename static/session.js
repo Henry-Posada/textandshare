@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    var socket = io.connect('http://127.0.0.1:5000')
+    var socket = io.connect('http://flask-env.eba-k8r7edvv.us-east-2.elasticbeanstalk.com:80')
 
     var usersConnected = document.getElementById("usersConnected");
     var textBoxID =  document.getElementById("textBox");
